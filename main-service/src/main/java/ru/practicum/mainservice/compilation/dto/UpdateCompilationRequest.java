@@ -1,16 +1,19 @@
 package ru.practicum.mainservice.compilation.dto;
 
 import jakarta.validation.constraints.Size;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UpdateCompilationRequest {
     @Size(min = 1, max = 50)
-    private String title;
+    String title;
     @UniqueElements
-    private List<Long> events;
-    private Boolean pinned;
+    List<Long> events;
+    Boolean pinned;
 }

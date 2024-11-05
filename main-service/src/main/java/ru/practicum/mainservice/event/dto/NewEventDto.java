@@ -5,10 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.mainservice.event.model.Location;
 
 import java.time.LocalDateTime;
@@ -17,29 +15,30 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class NewEventDto {
     @NotNull
     @NotBlank
     @Size(min = 20, max = 2000)
-    private String annotation;
+    String annotation;
     @NotNull
-    private Long category;
+    Long category;
     @NotNull
     @NotBlank
     @Size(min = 20, max = 7000)
-    private String description;
+    String description;
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
-    private LocalDateTime eventDate;
+    LocalDateTime eventDate;
     @NotNull
-    private Location location;
+    Location location;
     @Builder.Default
-    private boolean paid = false;
+    boolean paid = false;
     @Builder.Default
     @PositiveOrZero
-    private long participantLimit = 0L;
+    long participantLimit = 0L;
     @Builder.Default
-    private boolean requestModeration = true;
+    boolean requestModeration = true;
     @Size(min = 3, max = 120)
-    private String title;
+    String title;
 }

@@ -1,10 +1,8 @@
 package ru.practicum.mainservice.event.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.mainservice.category.model.Category;
 import ru.practicum.mainservice.user.model.User;
 
@@ -16,42 +14,43 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
     @Column(nullable = false, length = 2000)
-    private String annotation;
+    String annotation;
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    Category category;
     @Column(name = "confirmed_requests")
-    private Long confirmedRequests;
+    Long confirmedRequests;
     @Column(name = "created_on", nullable = false)
-    private LocalDateTime createdOn;
+    LocalDateTime createdOn;
     @Column(nullable = false, length = 7000)
-    private String description;
+    String description;
     @Column(name = "event_date", nullable = false)
-    private LocalDateTime eventDate;
+    LocalDateTime eventDate;
     @ManyToOne
     @JoinColumn(name = "initiator_id", nullable = false)
-    private User initiator;
+    User initiator;
     @Embedded
-    private Location location;
+    Location location;
     @Column(nullable = false)
-    private boolean paid;
+    boolean paid;
     @Builder.Default
     @Column(name = "participant_limit", nullable = false)
-    private Long participantLimit = 0L;
+    Long participantLimit = 0L;
     @Column(name = "published_on")
-    private LocalDateTime publishedOn;
+    LocalDateTime publishedOn;
     @Builder.Default
     @Column(name = "request_moderation", nullable = false)
-    private boolean requestModeration = true;
+    boolean requestModeration = true;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private State state;
+    State state;
     @Column(nullable = false, length = 120)
-    private String title;
-    private Long views;
+    String title;
+    Long views;
 }

@@ -1,10 +1,8 @@
 package ru.practicum.mainservice.request.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.mainservice.event.model.Event;
 import ru.practicum.mainservice.user.model.User;
 
@@ -18,19 +16,20 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ParticipationRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
     @Column(nullable = false)
-    private LocalDateTime created;
+    LocalDateTime created;
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Event event;
+    Event event;
     @ManyToOne
     @JoinColumn(nullable = false)
-    private User requester;
+    User requester;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private RequestStatus status;
+    RequestStatus status;
 }

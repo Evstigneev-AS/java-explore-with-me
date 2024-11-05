@@ -2,20 +2,23 @@ package ru.practicum.mainservice.compilation.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
 @Data
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class NewCompilationDto {
     @NotBlank
     @Size(min = 1, max = 50)
-    private String title;
+    String title;
     @UniqueElements
-    private List<Long> events;
+    List<Long> events;
     @Builder.Default
-    private boolean pinned = false;
+    boolean pinned = false;
 }
