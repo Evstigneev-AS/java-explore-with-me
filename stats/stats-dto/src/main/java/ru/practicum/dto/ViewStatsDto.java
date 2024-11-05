@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ViewStatsDto {
-     String app;
-     String uri;
-     Integer hits;
+    String app;
+    String uri;
+    Integer hits;
 }

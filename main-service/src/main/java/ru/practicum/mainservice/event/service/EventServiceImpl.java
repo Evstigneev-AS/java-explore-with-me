@@ -249,8 +249,8 @@ public class EventServiceImpl implements EventService {
                 throw new ConstraintUpdatingException("The start date of the event being modified must be no earlier than an hour from the date of publication.");
             } else if (updateEventAdminRequest.getEventDate().isBefore(minDateConstraint)) {
                 throw new BadRequestException(String.format("Field: eventDate. " +
-                        "Error: Должно содержать дату не ранее %s. " +
-                        "Value: %s", minDateConstraint, updateEventAdminRequest.getEventDate()));
+                                                            "Error: Должно содержать дату не ранее %s. " +
+                                                            "Value: %s", minDateConstraint, updateEventAdminRequest.getEventDate()));
             }
             event.setEventDate(updateEventAdminRequest.getEventDate());
             updatedFieldsLog.append("EventDate|");
@@ -321,8 +321,8 @@ public class EventServiceImpl implements EventService {
 
         if (newEventDto.getEventDate().isBefore(minDateConstraint)) {
             throw new BadRequestException(String.format("Field: eventDate. " +
-                    "Error: Должно содержать дату не ранее %s. " +
-                    "Value: %s", minDateConstraint, newEventDto.getEventDate()));
+                                                        "Error: Должно содержать дату не ранее %s. " +
+                                                        "Value: %s", minDateConstraint, newEventDto.getEventDate()));
         }
 
         log.info("{}.{}: Mapping from NewEventDto to Event", colorizeClass("EventService"), colorizeMethod("create()"));
@@ -559,7 +559,8 @@ public class EventServiceImpl implements EventService {
             return List.of();
         }
         try {
-            return objectMapper.convertValue(response.getBody(), new TypeReference<List<ViewStatsDto>>() {});
+            return objectMapper.convertValue(response.getBody(), new TypeReference<List<ViewStatsDto>>() {
+            });
         } catch (Exception e) {
             throw new RuntimeException("Failed to convert response to list", e);
         }

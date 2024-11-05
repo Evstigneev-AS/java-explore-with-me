@@ -1,9 +1,5 @@
 package ru.practicum.client;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -15,6 +11,10 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class StatsClient {
@@ -46,7 +46,7 @@ public class StatsClient {
     }
 
     public <T> ResponseEntity<Object> create(T body) {
-        return makeAndSendRequest(HttpMethod.POST, "/hit",null, body);
+        return makeAndSendRequest(HttpMethod.POST, "/hit", null, body);
     }
 
     private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method,

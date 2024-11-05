@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @RequiredArgsConstructor
-@FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ApiError {
     HttpStatus status;
     String reason;

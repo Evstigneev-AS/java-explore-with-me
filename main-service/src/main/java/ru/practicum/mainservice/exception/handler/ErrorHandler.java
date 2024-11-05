@@ -24,7 +24,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiError handleNotFoundException(final NotFoundException e) {
-        getLog(e,"NotFoundException");
+        getLog(e, "NotFoundException");
         return new ApiError(HttpStatus.NOT_FOUND,
                 "The required object was not found.",
                 e.getMessage());
@@ -33,7 +33,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleBadRequestException(final BadRequestException e) {
-        getLog(e,"BadRequestException");
+        getLog(e, "BadRequestException");
         return new ApiError(HttpStatus.BAD_REQUEST,
                 "Incorrectly made request.",
                 e.getMessage());
@@ -55,8 +55,8 @@ public class ErrorHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleTypeMismatchException(final MethodArgumentTypeMismatchException e) {
         String message = "Failed to convert value of type " + Objects.requireNonNull(e.getValue()).getClass().getSimpleName() +
-                " to required type " + Objects.requireNonNull(e.getRequiredType()).getSimpleName() +
-                "; nested exception is " + e.getCause().getMessage();
+                         " to required type " + Objects.requireNonNull(e.getRequiredType()).getSimpleName() +
+                         "; nested exception is " + e.getCause().getMessage();
         log.error("{}: {}", colorizeError("MethodArgumentTypeMismatchException"), message);
         return new ApiError(HttpStatus.BAD_REQUEST,
                 "Incorrectly made request.",
@@ -78,7 +78,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConflictException(final ConflictException e) {
-        getLog(e,"ConflictException");
+        getLog(e, "ConflictException");
         return new ApiError(HttpStatus.CONFLICT,
                 "There are events associated with the category.",
                 e.getMessage());
@@ -87,7 +87,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleViolationOfEditingRulesException(final ViolationOfEditingRulesException e) {
-        getLog(e,"ViolationOfEditingRulesException");
+        getLog(e, "ViolationOfEditingRulesException");
         return new ApiError(HttpStatus.CONFLICT,
                 "For the requested operation the conditions are not met.",
                 e.getMessage());
@@ -96,7 +96,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleEventParticipationConstraintException(final EventParticipationConstraintException e) {
-        getLog(e,"ConflictException");
+        getLog(e, "ConflictException");
         return new ApiError(HttpStatus.CONFLICT,
                 "Restriction of participation in the event.",
                 e.getMessage());
@@ -105,7 +105,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConstraintUpdatingException(final ConstraintUpdatingException e) {
-        getLog(e,"ConflictException");
+        getLog(e, "ConflictException");
         return new ApiError(HttpStatus.CONFLICT,
                 "Restriction of editing in the event.",
                 e.getMessage());
@@ -134,9 +134,9 @@ public class ErrorHandler {
                 className = className.substring(lastDotIndex + 1);
             }
 
-            log.error("{} in class {}, method {}: {}", colorizeError(exceptionName),colorizeClass(className), colorizeMethod(methodName), e.getMessage());
+            log.error("{} in class {}, method {}: {}", colorizeError(exceptionName), colorizeClass(className), colorizeMethod(methodName), e.getMessage());
         } else {
-            log.error("{}: {}",colorizeError(exceptionName), e.getMessage());
+            log.error("{}: {}", colorizeError(exceptionName), e.getMessage());
         }
     }
 }
