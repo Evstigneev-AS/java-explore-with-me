@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 public class EndpointHit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     Integer id;
-     String app;
-     String uri;
-     String ip;
-     LocalDateTime timestamp;
+    Integer id;
+    String app;
+    String uri;
+    String ip;
+    LocalDateTime timestamp;
 }
