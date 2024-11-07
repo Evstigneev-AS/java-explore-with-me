@@ -30,9 +30,9 @@ public class UserAdminController {
         return userService.findAll(ids, from, size);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{user-id}")
     @ResponseStatus(NO_CONTENT)
-    public void delete(@PathVariable Long userId) {
+    public void delete(@PathVariable("user-id") Long userId) {
         userService.deleteById(userId);
     }
 }

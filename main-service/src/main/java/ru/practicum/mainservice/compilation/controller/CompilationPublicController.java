@@ -20,8 +20,8 @@ public class CompilationPublicController {
         return compilationService.getCompilations(pinned, from, size);
     }
 
-    @GetMapping("/{compId}")
-    public CompilationDto getCompilationById(@PathVariable Long compId) {
+    @GetMapping("/{comp-id}")
+    public CompilationDto getCompilationById(@PathVariable("comp-id") Long compId) {
         return compilationService.getCompilationById(compId);
     }
 

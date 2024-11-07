@@ -9,24 +9,24 @@ import ru.practicum.mainservice.request.service.RequestService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users/{userId}/requests")
+@RequestMapping("/users/{user-id}/requests")
 @RequiredArgsConstructor
 public class RequestPrivateController {
     private final RequestService requestService;
 
     @GetMapping
-    public List<ParticipationRequestDto> getRequests(@PathVariable Long userId) {
+    public List<ParticipationRequestDto> getRequests(@PathVariable("user-id") Long userId) {
         return requestService.getRequests(userId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ParticipationRequestDto create(@PathVariable Long userId, @RequestParam Long eventId) {
+    public ParticipationRequestDto create(@PathVariable("user-id") Long userId, @RequestParam Long eventId) {
         return requestService.create(userId, eventId);
     }
 
-    @PatchMapping("/{requestId}/cancel")
-    public ParticipationRequestDto cancel(@PathVariable Long userId, @PathVariable Long requestId) {
+    @PatchMapping("/{request-id}/cancel")
+    public ParticipationRequestDto cancel(@PathVariable("user-id") Long userId, @PathVariable("request-id") Long requestId) {
         return requestService.cancel(userId, requestId);
     }
 }

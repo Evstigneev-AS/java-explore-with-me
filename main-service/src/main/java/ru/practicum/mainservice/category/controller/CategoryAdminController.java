@@ -20,14 +20,14 @@ public class CategoryAdminController {
         return categoryService.create(newCategoryDto);
     }
 
-    @DeleteMapping("/{catId}")
+    @DeleteMapping("/{cat-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long catId) {
+    public void delete(@PathVariable("cat-id") Long catId) {
         categoryService.delete(catId);
     }
 
-    @PatchMapping("/{catId}")
-    public CategoryDto update(@PathVariable Long catId, @Valid @RequestBody CategoryDto categoryDto) {
+    @PatchMapping("/{cat-id}")
+    public CategoryDto update(@PathVariable("cat-id") Long catId, @Valid @RequestBody CategoryDto categoryDto) {
         return categoryService.update(catId, categoryDto);
     }
 }
