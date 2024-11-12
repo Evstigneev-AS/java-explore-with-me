@@ -46,7 +46,7 @@ public class StatsClient {
     }
 
     public <T> ResponseEntity<Object> create(T body) {
-        return makeAndSendRequest(HttpMethod.POST, "/hit",null, body);
+        return makeAndSendRequest(HttpMethod.POST, "/hit", null, body);
     }
 
     private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method,
