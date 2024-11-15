@@ -29,5 +29,4 @@ public class Compilation {
     Set<Event> events;
     @Column(nullable = false)
     boolean pinned;
-
 }

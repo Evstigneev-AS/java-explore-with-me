@@ -55,8 +55,8 @@ public class ErrorHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleTypeMismatchException(final MethodArgumentTypeMismatchException e) {
         String message = "Failed to convert value of type " + Objects.requireNonNull(e.getValue()).getClass().getSimpleName() +
-                         " to required type " + Objects.requireNonNull(e.getRequiredType()).getSimpleName() +
-                         "; nested exception is " + e.getCause().getMessage();
+                " to required type " + Objects.requireNonNull(e.getRequiredType()).getSimpleName() +
+                "; nested exception is " + e.getCause().getMessage();
         log.error("{}: {}", colorizeError("MethodArgumentTypeMismatchException"), message);
         return new ApiError(HttpStatus.BAD_REQUEST,
                 "Incorrectly made request.",
@@ -120,6 +120,17 @@ public class ErrorHandler {
                 HttpStatus.CONFLICT,
                 "Integrity constraint has been violated.",
                 message
+        );
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ApiError handleStateConflictException(final StateConflictException e) {
+        getLog(e, "ConflictException");
+        return new ApiError(
+                HttpStatus.CONFLICT,
+                "Invalid event state.",
+                e.getMessage()
         );
     }
 
