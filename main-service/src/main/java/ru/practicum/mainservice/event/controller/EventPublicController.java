@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/events")
 @RequiredArgsConstructor
 public class EventPublicController {
+    public static final String EVENT_ID = "event-id";
     private final EventService eventService;
 
     @GetMapping
@@ -41,8 +42,8 @@ public class EventPublicController {
                 request);
     }
 
-    @GetMapping("/{event-id}")
-    public EventFullDto getEventById(@PathVariable("event-id") Long eventId, HttpServletRequest request) {
+    @GetMapping("/{" + EVENT_ID + "}")
+    public EventFullDto getEventById(@PathVariable(EVENT_ID) Long eventId, HttpServletRequest request) {
         return eventService.getEventById(eventId, request);
     }
 }

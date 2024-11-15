@@ -12,18 +12,20 @@ import java.util.List;
 @RequestMapping("/ratings")
 @RequiredArgsConstructor
 public class RatingPublicController {
+    public static final String EVENT_ID = "event-id";
+    public static final String RATING_ID = "rating-id";
     private final RatingService ratingService;
 
-    @GetMapping("/events/{event-id}")
-    public List<RatingDto> getAllRatingsByEvent(@PathVariable("event-id") Long eventId,
+    @GetMapping("/events/{" + EVENT_ID + "}")
+    public List<RatingDto> getAllRatingsByEvent(@PathVariable(EVENT_ID) Long eventId,
                                                 @RequestParam(defaultValue = "NEW_AND_USEFUL") RatingSortType sortType,
                                                 @RequestParam(defaultValue = "0") int from,
                                                 @RequestParam(defaultValue = "10") int size) {
         return ratingService.getAllRatingsByEvent(eventId, sortType, from, size);
     }
 
-    @GetMapping("/{rating-id}")
-    public RatingDto getRatingById(@PathVariable("rating-id") Long ratingId) {
+    @GetMapping("/{" + RATING_ID + "}")
+    public RatingDto getRatingById(@PathVariable(RATING_ID) Long ratingId) {
         return ratingService.getRatingById(ratingId);
     }
 }
